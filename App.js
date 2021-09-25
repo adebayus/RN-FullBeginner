@@ -1,29 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
+import 'react-native-gesture-handler';
 import React from 'react';
+import {StyleSheet, LogBox} from 'react-native';
+import AppNavContainer from './src/navigations';
+import {GlobalProvider} from './src/context/Provider';
 
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+LogBox.ignoreLogs(['Reanimated 2']);
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <StatusBar />
-      <Text> sadasd </Text>
-    </SafeAreaView>
+    <GlobalProvider>
+      <AppNavContainer />
+    </GlobalProvider>
   );
 };
 
