@@ -1,12 +1,12 @@
 import {
-  CREATE_CONTACTS_LOADING,
-  CREATE_CONTACTS_FAIL,
-  CREATE_CONTACTS_SUCCESS,
+  EDIT_CONTACTS_LOADING,
+  EDIT_CONTACTS_FAIL,
+  EDIT_CONTACTS_SUCCESS,
 } from '../../../constants/actionTypes';
 
 import AxiosInstance from '../../../helpers/AxiosInterceptors';
 
-export default form => dispatch => onSucces => {
+export default (form, id) => dispatch => onSucces => {
   const requestPayload = {
     country_code: form.country_code || '',
     first_name: form.first_name || '',
@@ -17,21 +17,21 @@ export default form => dispatch => onSucces => {
   };
   console.log('isi form', form);
   console.log(requestPayload, '=> request Payload');
-  dispatch({type: CREATE_CONTACTS_LOADING});
-  AxiosInstance.post('/contacts/', requestPayload)
+  dispatch({type: EDIT_CONTACTS_LOADING});
+  AxiosInstance.put(`/contacts/${id}`, requestPayload)
     .then(res => {
       console.log('then');
       dispatch({
-        type: CREATE_CONTACTS_SUCCESS,
+        type: EDIT_CONTACTS_SUCCESS,
         payload: res.data,
       });
-      console.log(res, '=> ini res');
-      onSucces();
+      console.log(res.data, '=> ini res');
+      onSucces(res.data);
     })
     .catch(err => {
       console.log('catch');
       dispatch({
-        type: CREATE_CONTACTS_FAIL,
+        type: EDIT_CONTACTS_FAIL,
         payload: err.response ? err.response.data : {error: 'Something Error'},
       });
     });

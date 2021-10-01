@@ -16,7 +16,7 @@ import Message from '../commons/Message';
 import colors from '../../assets/themes/colors';
 import Icon from '../commons/Icon';
 // import {useNavigation} from '@react-navigation/native';
-import {CREATE_CONTACT} from '../../constants/routesName';
+import {CONTACT_DETAIL, CREATE_CONTACT} from '../../constants/routesName';
 
 export default function index({
   navigate,
@@ -24,7 +24,9 @@ export default function index({
   loading,
   modalVisible,
   setModalVisible,
+  sortBy,
 }) {
+  //   console.log('data render', data);
   const ListEmptyComponent = () => {
     return (
       <View style={{paddingVertical: 100, paddingHorizontal: 100}}>
@@ -34,7 +36,7 @@ export default function index({
   };
 
   const renderItem = ({item}) => {
-    console.log('item', item);
+    // console.log('item render', item);
 
     const {contact_picture, first_name, last_name, phone_number, country_code} =
       item;
@@ -46,6 +48,9 @@ export default function index({
           justifyContent: 'space-between',
           paddingRight: 30,
           alignItems: 'center',
+        }}
+        onPress={() => {
+          navigate(CONTACT_DETAIL, {item});
         }}>
         <View
           style={{
@@ -96,16 +101,6 @@ export default function index({
   return (
     <>
       <View style={{backgroundColor: colors.white, flex: 1}}>
-        <AppModal
-          modalBody={
-            <View>
-              <Text> somText</Text>
-            </View>
-          }
-          // modalFooter={}
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-        />
         {loading && (
           <ActivityIndicator
             style={{paddingHorizontal: 100, paddingVertical: 100}}
@@ -117,8 +112,30 @@ export default function index({
           <View style={{paddingVertical: 20}}>
             <FlatList
               renderItem={renderItem}
-              data={data}
-              keyExtractor={item => String(item.id)}
+              data={
+                sortBy
+                  ? data.sort((a, b) => {
+                      if (sortBy === 'First Name') {
+                        if (b.first_name > a.first_name) {
+                          return -1;
+                        } else {
+                          return 1;
+                        }
+                      }
+                      if (sortBy === 'Last Name') {
+                        if (b.last_name > a.last_name) {
+                          return -1;
+                        } else {
+                          return 1;
+                        }
+                      }
+                    })
+                  : null
+              }
+              keyExtractor={item => {
+                console.log(item, 'key extrator');
+                return String(item.id);
+              }}
               ListEmptyComponent={ListEmptyComponent}
               ListFooterComponent={<View style={{height: 100}} />}
               ItemSeparatorComponent={() => (

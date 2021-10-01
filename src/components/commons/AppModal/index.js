@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   View,
@@ -10,6 +11,7 @@ import {
 // import { Icon } from 'react-native-vector-icons/Icon';
 import Icon from '../../commons/Icon';
 import colors from '../../../assets/themes/colors';
+import PropTypes from 'prop-types';
 
 const AppModal = ({
   modalVisible,
@@ -17,6 +19,7 @@ const AppModal = ({
   title,
   modalBody,
   modalFooter,
+  closeOnTouchOutside,
 }) => {
   return (
     <Modal visible={modalVisible} transparent>
@@ -26,8 +29,11 @@ const AppModal = ({
           flex: 1,
           justifyContent: 'center',
         }}
+        activeOpacity={1}
         onPress={() => {
-          setModalVisible(prev => !prev);
+          if (closeOnTouchOutside) {
+            setModalVisible(prev => !prev);
+          }
         }}>
         <View
           style={{
@@ -45,7 +51,10 @@ const AppModal = ({
                 width: '100%',
                 justifyContent: 'space-between',
               }}>
-              <Icon type="EvilIcons" name="close" size={29} />
+              <TouchableOpacity onPress={() => setModalVisible(prev => !prev)}>
+                <Icon type="EvilIcons" name="close" size={29} />
+              </TouchableOpacity>
+
               <Text style={{fontSize: 21}}>{title || 'RnContact'}</Text>
 
               <View />
@@ -96,5 +105,12 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
 });
+AppModal.propTypes = {
+  closeOnTouchOutside: PropTypes.bool,
+};
+
+AppModal.defaultProps = {
+  closeOnTouchOutside: true,
+};
 
 export default AppModal;

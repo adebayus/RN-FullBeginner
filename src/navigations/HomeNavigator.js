@@ -6,12 +6,14 @@ import Contacts from '../screens/Contacts';
 import ContactDetail from '../screens/ContactDetail';
 import CreateContact from '../screens/CreateContact';
 import Settings from '../screens/Settings';
+import Logout from '../screens/Logout';
+import {useNavigation} from '@react-navigation/native';
 
 const homeStack = createNativeStackNavigator();
 
 export default function HomeNavigator() {
   const {Navigator, Screen} = homeStack;
-
+  const {} = useNavigation();
   console.log('Home Navigator');
   return (
     <Navigator
@@ -27,6 +29,11 @@ export default function HomeNavigator() {
       <Screen name={RoutesName.CONTACT_DETAIL} component={ContactDetail} />
       <Screen name={RoutesName.CREATE_CONTACT} component={CreateContact} />
       <Screen name={RoutesName.SETTINGS} component={Settings} />
+      <Screen
+        options={{headerShown: false}}
+        name={RoutesName.LOGOUT}
+        component={Logout}
+      />
     </Navigator>
   );
 }

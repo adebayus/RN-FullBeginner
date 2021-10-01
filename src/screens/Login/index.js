@@ -7,7 +7,10 @@ import loginUser from '../../context/actions/auth/loginUser';
 import {GlobalContext} from '../../context/Provider';
 
 export default function Login() {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    userName: 'absabsabs',
+    password: 'absabsabs',
+  });
   const {navigate} = useNavigation();
   const {
     dispatchAuth,

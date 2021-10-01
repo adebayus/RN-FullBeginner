@@ -7,6 +7,7 @@ import {
   REGISTER_FAIL,
   REGISTER_LOADING,
   REGISTER_SUCCESS,
+  RELOG,
 } from '../../constants/actionTypes';
 
 export default function authReducer(state, {type, payload}) {
@@ -28,6 +29,8 @@ export default function authReducer(state, {type, payload}) {
       return {...state, error: null, data: {}};
     case LOGOUT_USER:
       return {isLogin: false, data: {}, error: null, loading: false};
+    case RELOG:
+      return {...state, isLogin: true, payload};
     default:
       return state;
   }

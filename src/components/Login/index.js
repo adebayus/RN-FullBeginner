@@ -59,11 +59,13 @@ export default function LoginComponent({
           <Message danger onDismiss={() => {}} message={errorFetch.error} />
         )} */}
         <TextInput
+          value={form.userName}
           label="Username"
           placeholder="Enter Username Here"
           onChangeText={text => onChange({name: 'userName', text})}
         />
         <TextInput
+          value={form.password}
           label="Password"
           placeholder="Enter Password Here"
           onChangeText={text => onChange({name: 'password', text})}

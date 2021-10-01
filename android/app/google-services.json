@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "324687099827",
+    "firebase_url": "https://koseeker-be728.firebaseio.com",
+    "project_id": "koseeker-be728",
+    "storage_bucket": "koseeker-be728.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324687099827:android:ed0457920d22ccb9403dc6",
+        "android_client_info": {
+          "package_name": "com.company.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324687099827-jjaqp1u75ck7c2ru17t6intbu3l5ulo9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.awesomeproject",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "324687099827-7dcf1s6u2e58ji15p88mq1q10kahtn73.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_PqZRQgdHLPFGqziOMP1zRGviAY_-SOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324687099827-7dcf1s6u2e58ji15p88mq1q10kahtn73.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

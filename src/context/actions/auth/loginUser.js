@@ -4,11 +4,21 @@ import {
   LOGIN_FAIL,
   LOGIN_LOADING,
   lOGIN_SUCCESS,
+  RELOG,
 } from '../../../constants/actionTypes';
 import AxiosInstance from '../../../helpers/AxiosInterceptors';
 
 export const clearAuth = () => dispatch => {
   dispatch({type: CLEAR_AUTH});
+};
+
+export const reLogin = loginData => dispatch => {
+  //   console.log(user, token, 'token');
+
+  dispatch({
+    type: RELOG,
+    payload: loginData,
+  });
 };
 
 export default ({password, userName: username}) =>

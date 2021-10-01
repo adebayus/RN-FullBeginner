@@ -19,6 +19,7 @@ export default function RegisterComponent({
 }) {
   const {navigate} = useNavigation();
   console.log(errorFetch?.error);
+  const [isHide, setIsHide] = useState(true);
   //   const [username, setUsername] = useState('');
   return (
     <Container>
@@ -69,8 +70,9 @@ export default function RegisterComponent({
         <TextInput
           label="Password"
           placeholder="Enter Password Here"
-          secureTextEntry={true}
-          icon={<Text>Show</Text>}
+          secureTextEntry={isHide}
+          icon={<Text>{isHide ? 'Show' : 'Hide'}</Text>}
+          showIconFn={() => setIsHide(prev => !prev)}
           iconPosition="right"
           onChangeText={text => onChange({name: 'password', text})}
           error={error.password || errorFetch?.password?.[0]}

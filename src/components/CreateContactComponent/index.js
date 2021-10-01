@@ -32,13 +32,15 @@ const index = ({
   localImage,
 }) => {
   console.log(sheetRef, '=> inirefcreateContact');
-
+  console.log(localImage, 'local image asdasd');
   console.log(error, 'post conttact error');
   return (
     <View style={styles.container}>
       <Container>
         <Image
-          source={{uri: localImage?.path || DEFAULT_IMAGE_URI}}
+          source={{
+            uri: localImage?.path || localImage || DEFAULT_IMAGE_URI,
+          }}
           style={{
             width: 150,
             height: 150,
@@ -63,12 +65,14 @@ const index = ({
           placeholder="Enter First Name..."
           onChangeText={text => onChangeText({name: 'first_name', text: text})}
           error={error?.first_name?.[0] || null}
+          value={form?.first_name || ''}
         />
         <TextInput
           label="Last Name"
           placeholder="Enter Last Name..."
           onChangeText={text => onChangeText({name: 'last_name', text: text})}
           error={error?.last_name?.[0] || null}
+          value={form?.last_name || ''}
         />
         <TextInput
           icon={
@@ -99,6 +103,7 @@ const index = ({
             onChangeText({name: 'phone_number', text: text})
           }
           error={error?.phone_number?.[0] || null}
+          value={form?.phone_number || ''}
         />
 
         <View
